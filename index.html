@@ -2,489 +2,159 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <!-- This tag is crucial for responsive design. It tells the browser how to control the page's dimensions and scaling. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Flavors of Florida</title>
     <link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;500&family=Tinos&display=swap" rel="stylesheet">
+    <script defer src="app.js"></script>
 
-    <style>
-        /* General Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html,
-        body {
-            width: 100%;
-            margin: 0;
-            font-family: 'Kanit', sans-serif;
-            overflow-x: hidden;
-            /* Prevents horizontal scrolling */
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        section {
-            padding: 55px 20px;
-            min-height: 0vh;
-        }
-
-        /* Header and Banner */
-        .header {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: column-reverse;
-            align-items: center;
-            position: relative;
-            min-height: 50vh;
-        }
-
-        .background {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            object-fit: cover;
-            /* Ensures the image covers the area without distortion */
-            opacity: 0.45;
-            z-index: -1;
-        }
-
-        .banner {
-            width: 80%;
-            /* Made banner responsive */
-            max-width: 400px;
-            /* Added max-width for larger screens */
-            margin: 20px 0;
-            animation-name: slideFromTop;
-            animation-duration: .8s;
-            z-index: 1;
-        }
-
-        /* Hotbar/Navigation */
-        .hotbar {
-            position: sticky;
-            top: 0;
-            left: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ff914d;
-            width: 100%;
-            height: 60px;
-            z-index: 100;
-        }
-
-        .taskbar-button {
-            appearance: none;
-            text-align: center;
-            padding: 0 15px;
-            /* Use padding instead of margin */
-            width: auto;
-            height: 50%;
-            border: 0;
-            background-color: #ff914d;
-            font-family: 'Kanit', sans-serif;
-            font-size: clamp(15px, 3vw, 20px);
-            /* Responsive font size */
-            letter-spacing: -1px;
-            transition: all 0.2s ease 0s;
-            cursor: pointer;
-            color: white;
-        }
-
-        .taskbar-button:hover {
-            color: #ffe7b8;
-            transform: translateY(-4px);
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 180px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Main Content Body */
-        .body {
-            display: flex;
-            flex-direction: column;
-            /* Stack vertically on mobile */
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .about {
-            width: 90%;
-            max-width: 800px;
-            /* Control max width on large screens */
-            margin-top: 2vh;
-            font-size: 1.2rem;
-        }
-
-        .about_img {
-            border: 8px solid #ff914d;
-            width: 80%;
-            max-width: 350px;
-            height: auto;
-            border-radius: 12%;
-            margin-top: 30px;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            /* Responsive font size */
-            font-family: 'Dancing Script', cursive;
-            color: #ff914d;
-        }
-
-        h2 {
-            color: #ff914d;
-            margin-top: 4rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-        }
-
-        .clink {
-            margin-top: 2rem;
-        }
-
-        .temp {
-            text-align: center;
-            font-size: 1.1rem;
-            max-width: 90%;
-            margin: 0 auto;
-            /* Center the element */
-            font-weight: 200;
-        }
-
-        /* Animation Section */
-        .hidden {
-            opacity: 0;
-            transition: all 1s;
-            transform: translateX(-25%);
-        }
-
-        .show {
-            opacity: 1;
-            transform: translateX(0%);
-        }
-
-        @media(prefers-reduced-motion) {
-            .hidden {
-                transition: none;
-            }
-        }
-
-        /* Image Collage */
-        .collage-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            padding: 20px;
-        }
-
-        .grid-container {
-            margin: auto;
-            width: 90vw;
-            /* Make grid responsive */
-            max-width: 800px;
-            aspect-ratio: 1/1;
-            display: grid;
-            grid-template-columns: repeat(16, 1fr);
-            grid-template-rows: repeat(16, 1fr);
-        }
-
-        .collage1 .item {
-            border: 5px solid #ffe7b8;
-        }
-
-        .item {
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: rgba(0, 0, 0, 0.5) 10px 10px 10px 0px;
-        }
-
-        .collage-image {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-
-        .item1 {
-            z-index: 10;
-            grid-area: 1/6/5/10;
-        }
-
-        .item2 {
-            z-index: 6;
-            grid-area: 5/1/11/7;
-        }
-
-        .item3 {
-            z-index: 5;
-            grid-area: 4/6/11/13;
-        }
-
-        .item4 {
-            grid-area: 2/-1/8/-7;
-        }
-
-        .item5 {
-            z-index: 10;
-            grid-area: 7/-3/10/-6;
-        }
-
-        .item6 {
-            z-index: 6;
-            grid-area: -1/3/-9/11;
-        }
-
-        .item7 {
-            z-index: 6;
-            grid-area: -3/-2/-9/-8;
-        }
-
-        .grid-container>* {
-            transition: all 0.5s;
-        }
-
-        .grid-container>*:hover {
-            z-index: 99;
-            transform: scale(1.3);
-        }
-
-        /* Footer */
-        .footnotes {
-            height: auto;
-            padding: 20px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffe7b8;
-        }
-
-        .logo {
-            height: 80px;
-            /* Set a fixed height for the logo */
-        }
-
-        /* Keyframe Animations */
-        @keyframes slideFromTop {
-            0% {
-                transform: translateY(-250px);
-            }
-
-            75% {
-                transform: translateY(20px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        /* Media Queries for Responsiveness */
-        @media (min-width: 768px) {
-            .body {
-                flex-direction: row;
-                /* Side-by-side on larger screens */
-                justify-content: space-around;
-                text-align: left;
-            }
-
-            .about {
-                width: 50%;
-            }
-
-            .about_img {
-                width: 40%;
-                margin-top: 0;
-            }
-
-            .temp {
-                max-width: 75%;
-            }
-        }
-    </style>
 </head>
+
 
 <body>
 
-    <header class="header">
-        <img class="background" src="assets/imgs/miami beach.jpg" alt="Miami Beach">
-        <img class="banner" src="assets/logo/banner.png" alt="Flavors of Florida Banner">
-    </header>
+    <div class="header">
+        <img class="background" src="assets/imgs/miami beach.jpg">
+        <img class="banner" src="assets/logo/banner.png">
+    </div>
 
-    <nav class="hotbar">
+    <div class="hotbar">
+
         <div>
-            <a href="/">
-                <button class="taskbar-button">Home</button>
+            <a href="/index.html">
+                <button class="taskbar-button"> Home </button>
             </a>
         </div>
+
         <div class="dropdown">
-            <button class="taskbar-button">Courses</button>
+            <button class="taskbar-button"> Courses
+                <i></i>
+            </button>
             <div class="dropdown-content">
-                <a href="/courses/#Appetizers-Heading">Appetizers</a>
-                <a href="/courses/#Entrees-Heading">Entrees</a>
-                <a href="/courses/#Desserts-Heading">Desserts</a>
+                <a href="/courses/courses.html#Appetizers-Heading"> Appetizers </a>
+                <a href="/courses/courses.html#Entrees-Heading"> Entrees </a>
+                <a href="/courses/courses.html#Desserts-Heading"> Desserts </a>
             </div>
+
         </div>
+
         <div>
-            <a href="/locations/">
-                <button class="taskbar-button">Locations</button>
+            <a href="/locations/locations.html">
+                <button class="taskbar-button"> Locations </button>
             </a>
         </div>
-    </nav>
 
-    <main>
-        <section class="hidden">
-            <div class="body">
-                <div class="about">
-                    <h1>Why Florida’s Food Matters</h1>
-                    <p>Welcome to Flavors of Florida! Dive into the vibrant and mouthwatering world of Florida’s diverse
-                        cuisine. This site is all about helping you discover the iconic dishes that make our state so
-                        special, like the tangy Key Lime Pie or the savory Cuban Sandwich. Here, you'll find not only
-                        the recipes to make them but also learn where you can find these delicious foods and what parts
-                        of Florida they’re connected to.</p>
-                    <p>So, why does Florida’s food matter? It’s not just about the taste—it’s about the heart and
-                        history behind each dish. Florida’s food scene is a melting pot of flavors, influenced by
-                        Caribbean, Latin, Southern, and even European traditions. Each meal carries with it a piece of
-                        the state’s cultural fabric, telling the story of the people, places, and flavors that make
-                        Florida so unique. We hope this website inspires you to cook, explore, and appreciate the rich
-                        culinary heritage that brings us all together. Enjoy the journey, and welcome to the real taste
-                        of Florida!</p>
-                </div>
-                <img class="about_img"
-                    src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2017/4/27/0/FN_states-plates-florida-illustration.jpg.rend.hgtvcom.791.594.suffix/1493303994786.jpeg"
-                    alt="Illustration of Florida cuisine">
+    </div>
+
+
+    <section class="hidden">
+        <div class="body">
+            <div class="about">
+                <h1><u>Why Florida’s Food Matters</u></h1>
+                <p>Welcome to Flavors of Florida! Dive into the vibrant and mouthwatering world of Florida’s diverse
+                    cuisine. This site is all about helping you discover the iconic dishes that make our state so
+                    special, like the tangy Key Lime Pie or the savory Cuban Sandwich. Here, you'll find not only the
+                    recipes to make them but also learn where you can find these delicious foods and what parts of
+                    Florida they’re connected to.</p>
+                <p>So, why does Florida’s food matter? It’s not just about the taste—it’s about the heart and history
+                    behind each dish. Florida’s food scene is a melting pot of flavors, influenced by Caribbean, Latin,
+                    Southern, and even European traditions. Each meal carries with it a piece of the state’s cultural
+                    fabric, telling the story of the people, places, and flavors that make Florida so unique. We hope
+                    this website inspires you to cook, explore, and appreciate the rich culinary heritage that brings us
+                    all together. Enjoy the journey, and welcome to the real taste of Florida!</p>
+            </div class="home_img">
+            <img class="about_img"
+                src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2017/4/27/0/FN_states-plates-florida-illustration.jpg.rend.hgtvcom.791.594.suffix/1493303994786.jpeg">
+            <div>
+
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="hidden">
-            <h1 class="us">About Us:</h1>
-            <p class="temp">We’re a group of students who share a passion for food and the vibrant culture of Florida.
-                What brought us together is our love for exploring the unique flavors that represent the heart of our
-                state. Inspired by Florida’s rich blend of ethnic traditions and coastal influences, we set out to
-                celebrate the dishes that define our home. From Cuban sandwiches to Key Lime Pie, we believe food
-                connects people, places, and stories. As students, we’re excited to share these incredible recipes and
-                showcase the diversity of Florida’s culinary heritage.</p>
-        </section>
+    <section class="hidden">
+        <h1 class="us">About Us:</h1>
+        <p>
+        <div class="temp">We’re a group of students who share a passion for food and the vibrant culture of Florida.
+            What brought us together is our love for exploring the unique flavors that represent the heart of our state.
+            Inspired by Florida’s rich blend of ethnic traditions and coastal influences, we set out to celebrate the
+            dishes that define our home.
 
-        <section class="hidden">
-            <h2>Go on to explore the beautiful and delicious recipes that make up our culture!</h2>
-        </section>
+            From Cuban sandwiches to Key Lime Pie, we believe food connects people, places, and stories. As students,
+            we’re excited to share these incredible recipes and showcase the diversity of Florida’s culinary heritage.
+        </div>
+        </p>
+    </section>
 
-        <section class="hidden">
-            <div class="collage-container">
-                <div class="grid-container collage1">
-                    <div class="item item1">
-                        <a href="/courses/Recipes/CapreseSalad.html">
-                            <img class="collage-image" src="assets/imgs/CapreseSalad.jpg" alt="Caprese Salad">
-                        </a>
-                    </div>
-                    <div class="item item2">
-                        <a href="/courses/Recipes/StrawberryFizz.html">
-                            <img class="collage-image" src="assets/imgs/StrawberryFizz.jpg" alt="Strawberry Fizz">
-                        </a>
-                    </div>
-                    <div class="item item3">
-                        <a href="/courses/Recipes/PhoNoodleSoup.html">
-                            <img class="collage-image" src="assets/imgs/PhoNoodleSoup.jpg" alt="Pho Noodle Soup">
-                        </a>
-                    </div>
-                    <div class="item item4">
-                        <a href="/courses/Recipes/SourOrangePie.html">
-                            <img class="collage-image" src="assets/imgs/SourOrangePie.jpg" alt="Sour Orange Pie">
-                        </a>
-                    </div>
-                    <div class="item item5">
-                        <a href="/courses/Recipes/AlligatorBites.html">
-                            <img class="collage-image" src="assets/imgs/AlligatorBites.jpg" alt="Alligator Bites">
-                        </a>
-                    </div>
-                    <div class="item item6">
-                        <a href="/courses/Recipes/NicaraguanCarneAsada.html">
-                            <img class="collage-image" src="assets/imgs/CarneAsada.jpg" alt="Carne Asada">
-                        </a>
-                    </div>
-                    <div class="item item7">
-                        <a href="/courses/Recipes/CrispyYellowtailSandwich.html">
-                            <img class="collage-image" src="assets/imgs/yellowTailSandwich.jpg"
-                                alt="Yellowtail Sandwich">
-                        </a>
-                    </div>
+    <section class="hidden">
+        <h2>Go on to explore the beautiful and delicious recipes that make up our culture! </h2>
+
+    </section>
+
+
+    <section class="hidden">
+
+        <div class="container collage1">
+            <div class="grid-container">
+                <div class="item item1">
+                    <a href="/courses/Recipes/CapreseSalad.html">
+                        <img class="collage-image" src="assets\imgs\CapreseSalad.jpg" alt="image">
+                    </a>
+                </div>
+                <div class="item item2">
+                    <a href="/courses/Recipes/StrawberryFizz.html">
+                        <img class="collage-image" src="assets\imgs\StrawberryFizz.jpg" alt="image">
+                    </a>
+                </div>
+                <div class="item item3">
+                    <a href="/courses/Recipes/PhoNoodleSoup.html">
+                        <img class="collage-image" src="assets\imgs\PhoNoodleSoup.jpg" alt="image">
+                    </a>
+                </div>
+                <div class="item item4">
+                    <a href="/courses/Recipes/SourOrangePie.html">
+                        <img class="collage-image" src="assets\imgs\SourOrangePie.jpg" alt="image">
+                    </a>
+                </div>
+                <div class="item item5">
+                    <a href="/courses/Recipes/AlligatorBites.html">
+                        <img class="collage-image" src="assets\imgs\AlligatorBites.jpg" alt="image">
+                    </a>
+                </div>
+                <div class="item item6">
+                    <a href="/courses/Recipes/NicaraguanCarneAsada.html">
+                        <img class="collage-image" src="assets\imgs\CarneAsada.jpg" alt="image">
+                    </a>
+                </div>
+                <div class="item item7">
+                    <a href="/courses/Recipes/CrispyYellowtailSandwich.html">
+                        <img class="collage-image" src="assets\imgs\yellowTailSandwich.jpg" alt="image">
+                    </a>
                 </div>
             </div>
-            <a href="/courses/">
-                <h2 class="clink">See the rest of our recipes here!</h2>
-            </a>
-        </section>
-    </main>
+        </div>
 
-    <footer class="footnotes">
-        <img class="logo" src="assets/logo/logo.png" alt="Logo">
-    </footer>
+        <a href="/courses/courses.html">
+            <h2 class="clink">See the rest of our recipes here! </h2>
+        </a>
 
-    <script>
-        // Your Javascript from app.js is now here
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                } else {
-                    // You might want to remove this else block if you don't want the animation to re-trigger on scroll up
-                    // entry.target.classList.remove('show');
-                }
-            });
-        }, {
-            threshold: 0.1 // Triggers the animation when 10% of the element is visible
-        });
+    </section>
 
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
-    </script>
+
+
+
+
+
+
+
+    <div class="footnotes">
+
+        <img class="logo" src="assets/logo/logo.png">
+
+    </div>
+
+
+
 
 </body>
 
