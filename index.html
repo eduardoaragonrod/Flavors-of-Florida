@@ -353,22 +353,11 @@
 <body>
 
     <header class="header">
-        <img class="background"
-            src="https://images.unsplash.com/photo-1512936702495-36a8e3552882?q=80&w=2070&auto=format&fit=crop"
-            alt="Miami Beach">
-        <!-- Using a placeholder image for the banner -->
-        <img class="banner" src="https://placehold.co/600x200/FF914D/FFFFFF?text=Flavors+of+Florida&font=dancing-script"
-            alt="Flavors of Florida Banner">
+        <img class="background" src="assets/imgs/miami beach.jpg" alt="Miami Beach">
+        <img class="banner" src="assets/logo/banner.png" alt="Flavors of Florida Banner">
     </header>
 
     <nav class="hotbar">
-        <!-- 
-          ISSUE #2 FIX:
-          Changed the link from "/index.html" to "/". 
-          Hosting services like Netlify use "pretty URLs" and will automatically
-          serve the index.html file for a directory. This keeps your URLs clean.
-          You should apply this to your other links as well (e.g., "/courses/" instead of "/courses/courses.html").
-        -->
         <div>
             <a href="/">
                 <button class="taskbar-button">Home</button>
@@ -430,21 +419,42 @@
         <section class="hidden">
             <div class="collage-container">
                 <div class="grid-container collage1">
-                    <!-- Placeholder images are used here as I don't have access to your local asset folder -->
-                    <div class="item item1"><a href="#"><img class="collage-image"
-                                src="https://placehold.co/300x300/f87171/ffffff?text=Recipe+1" alt="image"></a></div>
-                    <div class="item item2"><a href="#"><img class="collage-image"
-                                src="https://placehold.co/300x300/fbbf24/ffffff?text=Recipe+2" alt="image"></a></div>
-                    <div class="item item3"><a href="#"><img class="collage-image"
-                                src="https://placehold.co/300x300/34d399/ffffff?text=Recipe+3" alt="image"></a></div>
-                    <div class="item item4"><a href="#"><img class="collage-image"
-                                src="https://placehold.co/300x300/60a5fa/ffffff?text=Recipe+4" alt="image"></a></div>
-                    <div class="item item5"><a href="#"><img class="collage-image"
-                                src="https://placehold.co/300x300/c084fc/ffffff?text=Recipe+5" alt="image"></a></div>
-                    <div class="item item6"><a href="#"><img class="collage-image"
-                                src="https://placehold.co/300x300/f472b6/ffffff?text=Recipe+6" alt="image"></a></div>
-                    <div class="item item7"><a href="#"><img class="collage-image"
-                                src="https://placehold.co/300x300/818cf8/ffffff?text=Recipe+7" alt="image"></a></div>
+                    <div class="item item1">
+                        <a href="/courses/Recipes/CapreseSalad.html">
+                            <img class="collage-image" src="assets/imgs/CapreseSalad.jpg" alt="Caprese Salad">
+                        </a>
+                    </div>
+                    <div class="item item2">
+                        <a href="/courses/Recipes/StrawberryFizz.html">
+                            <img class="collage-image" src="assets/imgs/StrawberryFizz.jpg" alt="Strawberry Fizz">
+                        </a>
+                    </div>
+                    <div class="item item3">
+                        <a href="/courses/Recipes/PhoNoodleSoup.html">
+                            <img class="collage-image" src="assets/imgs/PhoNoodleSoup.jpg" alt="Pho Noodle Soup">
+                        </a>
+                    </div>
+                    <div class="item item4">
+                        <a href="/courses/Recipes/SourOrangePie.html">
+                            <img class="collage-image" src="assets/imgs/SourOrangePie.jpg" alt="Sour Orange Pie">
+                        </a>
+                    </div>
+                    <div class="item item5">
+                        <a href="/courses/Recipes/AlligatorBites.html">
+                            <img class="collage-image" src="assets/imgs/AlligatorBites.jpg" alt="Alligator Bites">
+                        </a>
+                    </div>
+                    <div class="item item6">
+                        <a href="/courses/Recipes/NicaraguanCarneAsada.html">
+                            <img class="collage-image" src="assets/imgs/CarneAsada.jpg" alt="Carne Asada">
+                        </a>
+                    </div>
+                    <div class="item item7">
+                        <a href="/courses/Recipes/CrispyYellowtailSandwich.html">
+                            <img class="collage-image" src="assets/imgs/yellowTailSandwich.jpg"
+                                alt="Yellowtail Sandwich">
+                        </a>
+                    </div>
                 </div>
             </div>
             <a href="/courses/">
@@ -454,7 +464,7 @@
     </main>
 
     <footer class="footnotes">
-        <img class="logo" src="https://placehold.co/200x80/ffe7b8/333333?text=Logo" alt="Logo">
+        <img class="logo" src="assets/logo/logo.png" alt="Logo">
     </footer>
 
     <script>
